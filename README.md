@@ -122,3 +122,4 @@
     - 메모리 효율성 및 연산 속도
   - char로도 충분한 경우, long 형처럼 메모리를 많이 차지하는 데이터형을 쓸 필요 없음
   
+  ![22620E385847BD1104](https://user-images.githubusercontent.com/50474972/113671686-a84f8300-96f1-11eb-86cd-9e2d1507b76e.png)
