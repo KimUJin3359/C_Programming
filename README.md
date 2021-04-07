@@ -1,4 +1,4 @@
-# Linux_Shell_Programming_2_
+# C_Programming
 
 ### 프로그래밍 지식
 - 프로그램 : 컴퓨터 프로그램이란, 컴퓨터에 의해 실행되는 순차적인 일련의 명령어 집합
