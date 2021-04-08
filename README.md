@@ -262,3 +262,102 @@
 - 특정 비트만 제어해서, 다른 장치를 건드리지 않고 특정 장치만 신호를 주거나 읽을 수 있음
 - 비트 연산을 통해 원하는 비트만 수정/읽기가 가능
   ```
+
+### 함수 정의와 선언
+- 함수의 정보는 Text영역에 저장됨
+
+#### 함수 인자 전달
+- Argument : 전달인자, 인자, 보내는 값
+  ```
+  sum(1, 2);
+  ```
+- Parameter : 매개변수, 함수가 호출되면 받는 값들, 입력 변수명
+  ```
+  int sum(int a, int b)
+  {
+    return (a + b);
+  }
+  ```
+- 규칙
+  - Argument의 개수와 Parameter의 개수는 같아야함
+  - 보낼 때 값을 여러개 전달할 수 있음
+  - 리턴 할 때는 하나의 값만 리턴 가능
+- 여러 개의 값을 리턴 받고 싶을 때
+  - 전역 변수를 사용
+  - 포인터를 이용
+  - 구조체 변수를 사용
+
+### static
+- static = 정적
+- static 키워드를 쓰는 곳 마다 역할이 다름
+  - 지역 변수에 static
+    - 함수에서만 쓸 수 있는 전역변수로 취급됨
+    - 함수 외부에서 불러쓰지는 못하지만, 함수내에 해당 값이 남아있어서 계속 유지가능
+  - 함수에 static
+    - 현재 사용중인 c파일 내에서만 사용 가능
+    - 다른 파일이 사용 못하는 함수
+  - 전역 변수에 static
+    - 현재 사용중인 c파일 내에서만 사용 가능
+    - 다른 파일이 사용 못하는 전역변수
+
+### Preprocessor 과정
+#### Preprocessor 역할
+- 컴파일 하기 전 전처리 과정
+  - c 파일을 읽어 전처리를 한 후, i 파일로 만듬
+  - "전처리기 지시문"들을 처리(\*.i 파일) 
+    - \#include : 파일 내용 그대로 복사
+    - \#define : 글자 그대로 치환
+    - \#if / \#ifdef
+    - \#pragma : 컴파일러 전용 전처리기 지시문
+- 컴파일은 파일을 하나만 번역
+- 프리프로세서도 하나의 파일씩 처리
+
+#### \#ifdef문
+- \#ifdef '이름' : \#define '이름'이 되어 있을때 실행
+- \#ifndef '이름' : \#define '이름'이 되어 있지 않을 때 실행
+- \#else : \#ifdef, \#ifndef가 선언되고 그 외의 조건에서 실행
+- \#endif : \#ifdef, \#ifndef 종료
+- \#undef : \#def 제거
+
+#### \#if문
+- \#if문은 \#ifdef와 달리 값으로 코드 수행여부 결정
+  - \#if
+  - \#else
+  - \#elif
+  - \#endif
+```
+#if 0
+// Test Case
+#endif
+```
+- 코드를 포함시키지 않는 용도
+```
+# if defined FT_H
+...
+#endif
+- #if defined
+  - 하나만 쓰면 #ifdef와 동일
+  - defined를 쓰면 &&, ||, ==, !=, >< 등 연산 기호를 사용 할 수 있음
+```
+
+#### \#define을 쓰는 이유
+- Build System에서 \#define을 추가해 줄 수 있음
+- GCC 옵션
+  - gcc -D [define 이름]
+  - gcc -D [define 이름]=[값]
+- Makefile 수정
+  - gcc -D [define 이름] 옵션을 사용
+- 활용
+  - Hardware 초기화 코드
+  ```
+  #ifndef ENGINE
+  #error
+  #endif
+  
+  ...
+  - ENGINE이 있어야 동작
+  ```
+- 임베디드 Debug 모드
+  - 개발시는 Debug : 로그 메세지 다량, Assert문 다량, Dump
+  - 배포시는 Release : 로그 제거, Assert 제거
+
