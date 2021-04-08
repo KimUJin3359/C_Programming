@@ -434,3 +434,93 @@
   ```
 ---
 
+### 함수 선언
+- C 언어 규칙
+  - 맨 위부터 읽으면서, 함수를 등록 
+- 함수 선언 : 앞으로 이 함수를 쓸 것이다(선언), 그로 인해 컴파일 에러를 내지 말라는 의미
+- 함수 선언과 정의(body) : 앞으로 이 함수를 쓸 것이다(선언), 이 함수의 정의는 이러함을 나타냄
+- 함수 선언은 여러번 해도 되지만, 함수 정의는 한번 만 해야됨
+- 유의할 점
+  - 중복 include로 인한 컴파일 에러 : header guard사용으로 해결
+  - 상호 include 발생 : 모든 header file에 header guard를 사용함으로써 해결
+
+---
+
+### C파일과 Header의 차이
+- header 파일, c 파일 모두 include 가능
+  - include 시 지정된 파일의 내용을 모두 가져옴
+  
+  | header 파일 | c 파일 |
+  | --- | --- |
+  | 컴파일 되지 않음 | 컴파일 |
+  
+  ```
+  // 같은 프로젝트 내에서의 작업이라 가정
+  
+  - header.c -
+  int a = 5;
+  
+  - header.h -
+  int b = 5;
+  
+  - main.c -
+  #include "header.c"
+  #include "header.h"
+  
+  --> header.c로 인하여 컴파일 에러 발생
+  1) header.c에 있는 int a = 5를 main.c로 가져옴
+  2) header.h에 있는 int b = 5를 main.c로 가져옴
+  3) header.c, main.c 컴파일 (문제 없음)
+  4) header.o, main.o 링크 과정에서 중복된 변수가 존재하여 링크 에러가 발생
+
+  - preprocessor에서는 header file, c file을 똑같이 취급
+  - build system에서는 header file과 c file을 다르게 취급
+  ```
+- 위와 같은 문제로 아래에서도 에러 발생
+  ```
+  // 같은 프로젝트 내에서의 작업이라 가정
+  
+  - header.h -
+  #ifndef HEADER_H
+  # define HEADER_H
+  # include <stdio.h>
+  void print()
+  {
+    printf("hello");
+  }
+  #endif
+  
+  - header.c -
+  #include "header.h"
+  
+  - main.c -
+  #include "header.h"
+  
+  int main()
+  {
+    return (0);
+  }
+  
+  - header에는 중복 선언 방지가 되어 있지만, 그 것은 한 파일 내에서 유효
+  1) header.c에서 void print() ... 을 불러옴
+  2) main.c에서도 void print() ... 을 불러옴
+  3) header.c, main.c 컴파일
+  4) header.o, main.o 링크 과정에서 중복된 함수가 존재하여 링크 에러 발생
+  ```
+- 헤더에 있는 코드를 소스파일과 헤더 파일로 분할 해야 됨
+  - 헤더파일 : 중복 코드가 있어도 상관없는 코드 삽입
+  - 소스파일 : 그 외 코드 삽입
+
+#### API Code와 Main Code
+- Main Code
+  - 프로그램 시작 시 동작하는 코드
+  - 해당 코드는 누군가 호출하지 않음
+  - Header 파일이 없어도 됨
+- API Code
+  - 누군가 호출하는 코드
+  - 여러개의 소스파일이 include 가능
+  - 따라서, header와 source 파일을 나누어서 구현
+- 각 파일에 필요한 library는 각 파일에 선언해주는 것이 좋음
+  - 전처리 과정에서 불필요한 라이브러리들이 들어갈 경우, 용량이 커지는 결과가 발생 
+
+---
