@@ -1,5 +1,27 @@
 # C_Programming
 
+### 목차
+[1. 프로그래밍 지식](https://github.com/KimUJin3359/C_Programming/blob/master/README.md/#%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%EC%A7%80%EC%8B%9D)
+[2. 언어의 특징](https://github.com/KimUJin3359/C_Programming/blob/master/README.md/#%EC%96%B8%EC%96%B4%EC%9D%98-%ED%8A%B9%EC%A7%95)
+[3. C언어의 특징 및 종류](https://github.com/KimUJin3359/C_Programming/blob/master/README.md/#c%EC%96%B8%EC%96%B4%EC%9D%98-%ED%8A%B9%EC%A7%95-%EB%B0%8F-%EC%A2%85%EB%A5%98)
+[4. 컴파일](https://github.com/KimUJin3359/C_Programming/blob/master/README.md/#%EC%BB%B4%ED%8C%8C%EC%9D%BC)
+[5. 데이터형](https://github.com/KimUJin3359/C_Programming/blob/master/README.md/#%EB%8D%B0%EC%9D%B4%ED%84%B0%ED%98%95)
+[6. 엔디언](https://github.com/KimUJin3359/C_Programming/blob/master/README.md/#%EC%97%94%EB%94%94%EC%96%B8)
+[7. 변수와 메모리](https://github.com/KimUJin3359/C_Programming/blob/master/README.md/#%EB%B3%80%EC%88%98%EC%99%80-%EB%A9%94%EB%AA%A8%EB%A6%AC)
+[8. 비트연산](https://github.com/KimUJin3359/C_Programming/blob/master/README.md/#%EB%B9%84%ED%8A%B8%EC%97%B0%EC%82%B0)
+[9. Firmware 프로그래밍](https://github.com/KimUJin3359/C_Programming/blob/master/README.md/#firmware-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D)
+[10. 함수 정의와 선언](https://github.com/KimUJin3359/C_Programming/blob/master/README.md/#%ED%95%A8%EC%88%98-%EC%A0%95%EC%9D%98%EC%99%80-%EC%84%A0%EC%96%B8)
+[11. static](https://github.com/KimUJin3359/C_Programming/blob/master/README.md/#static)
+[12. extern](https://github.com/KimUJin3359/C_Programming/blob/master/README.md/#extern)
+[13. Preprocess](https://github.com/KimUJin3359/C_Programming/blob/master/README.md/#preprocess)
+[14. 매크로함수](https://github.com/KimUJin3359/C_Programming/blob/master/README.md/#%EB%A7%A4%ED%81%AC%EB%A1%9C%ED%95%A8%EC%88%98)
+[15. Header Guard](https://github.com/KimUJin3359/C_Programming/blob/master/README.md/#header-guard)
+[16. 함수 선언](https://github.com/KimUJin3359/C_Programming/blob/master/README.md/#%ED%95%A8%EC%88%98-%EC%84%A0%EC%96%B8)
+[17. C파일과 Header의 차이](https://github.com/KimUJin3359/C_Programming/blob/master/README.md/#c%ED%8C%8C%EC%9D%BC%EA%B3%BC-header%EC%9D%98-%EC%B0%A8%EC%9D%B4)
+[18. 포인터](https://github.com/KimUJin3359/C_Programming/blob/master/README.md/#%ED%8F%AC%EC%9D%B8%ED%84%B0)
+
+---
+
 ### 프로그래밍 지식
 - 프로그램 : 컴퓨터 프로그램이란, 컴퓨터에 의해 실행되는 순차적인 일련의 명령어 집합
 - 프로그래밍 언어 : 프로그램을 작성하기 위해 만들어진 언어
@@ -272,12 +294,12 @@
   ```
   unsigned char *p = 'I/O 주소';
   *p = 0xf0;
+  ```
   
 #### 임베디드에서 비트연산을 사용하는 이유
 - Memory Mapped I/O 구조에서 하드웨어를 제어하기 위해 포인터를 이용하여 장치를 제어
 - 특정 비트만 제어해서, 다른 장치를 건드리지 않고 특정 장치만 신호를 주거나 읽을 수 있음
 - 비트 연산을 통해 원하는 비트만 수정/읽기가 가능
-  ```
 
 ---
 
@@ -335,7 +357,7 @@
 
 ---
 
-### Preprocessor 과정
+### Preprocess
 #### Preprocessor 역할
 - 컴파일 하기 전 전처리 과정
   - c 파일을 읽어 전처리를 한 후, i 파일로 만듬
@@ -413,8 +435,8 @@
 ((a) >= (b))? \
 (a) : (b)
 ```
-- ## 사용하기
-  - ##을 사용하면 문자열을 붙여 표현이 가능
+- \#\# 사용하기
+  - \#\#을 사용하면 문자열을 붙여 표현이 가능
 ```
 #define CAT(a, b, c) (a)##(b)##(c)
 ```
